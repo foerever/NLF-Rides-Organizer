@@ -1,0 +1,1 @@
+module.exports = 'mongodb://ricestudent:rice2020@ds129004.mlab.com:29004/ricenlf';

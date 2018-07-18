@@ -1,4 +1,3 @@
-// 'use strict';
 var path = require('path');
 const cors = require('cors');
 
@@ -8,9 +7,7 @@ var app = express();
 var userModel = require('./models.js').User;
 var mongoose = require('mongoose');
 
-// put your mongo db url here 
-// i should prob abstract this more to gitignore and make this a variable ill do it later
-mongoose.connect('mongodb://ricestudent:rice2020@ds129004.mlab.com:29004/ricenlf')
+mongoose.connect(require('./connection.js'))
 
 //run middleware
 app.use(cors());
@@ -22,17 +19,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// to get the data from the db just testing things
-
-// app.get('/user', (req, res) => {
-//     userModel.findOne({
-//         phone_number: req.query.phone_number
-//     }, function(err, doc) {
-
-//         res.status(200).send(doc);
-//     });
-// })
-
 app.get('/users', (req, res) => {
     userModel.find({
     }, function(err, doc) {
@@ -40,12 +26,8 @@ app.get('/users', (req, res) => {
     });
 })
 
-
-
 app.get('/', (req, res) => {
-    console.log("HELLO")
     res.sendFile(path.resolve(__dirname, '../public/', 'index.html'));
-
 });
 
 

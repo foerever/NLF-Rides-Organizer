@@ -17,7 +17,6 @@ var schema = require('./schema');
 
 // models 
 var models = require('./models');
-// console.log(connection_info);
 
 var db = mongoose.connect( connection_info.connection_info , () => {
     console.log('db connected!')
